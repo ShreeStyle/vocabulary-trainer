@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Listening Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="custom-dropdown.js"></script>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen active">
+        <h1 class="title">English Listening Game</h1>
+        <div class="container">
+            <p class="subtitle" id="welcomeSubtitle">=> Improve your vocabulary</p>
+            
+            <div class="settings-panel">
+                <div class="setting-group">
+                    <label>Difficulty Level:</label>
+                    <div class="custom-select" data-select="difficulty">
+                        <div class="select-selected">Beginner - Short words, slower speed</div>
+                        <div class="select-items select-hide">
+                            <div data-value="beginner">Beginner - Short words, slower speed</div>
+                            <div data-value="intermediate">Intermediate - Medium phrases, normal speed</div>
+                            <div data-value="advanced">Advanced - Full sentences, faster speed</div>
+                            <div data-value="veryhard">Very Hard - Extremely long words, fastest speed</div>
+                        </div>
+                    </div>
+                    <select id="difficultySelect" style="display:none;">
+                        <option value="beginner">Beginner - Short words, slower speed</option>
+                        <option value="intermediate">Intermediate - Medium phrases, normal speed</option>
+                        <option value="advanced">Advanced - Full sentences, faster speed</option>
+                        <option value="veryhard">Very Hard - Extremely long words, fastest speed</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label>Game Mode:</label>
+                    <div class="custom-select" data-select="mode">
+                        <div class="select-selected">Word Mode - Type single words</div>
+                        <div class="select-items select-hide">
+                            <div data-value="word">Word Mode - Type single words</div>
+                            <div data-value="sentence" id="sentenceOptionCustom">Sentence Mode - Type full sentences</div>
+                        </div>
+                    </div>
+                    <select id="modeSelect" style="display:none;">
+                        <option value="word">Word Mode - Type single words</option>
+                        <option value="sentence" id="sentenceOption">Sentence Mode - Type full sentences</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label>Accent:</label>
+                    <div class="custom-select" data-select="accent">
+                        <div class="select-selected">American English</div>
+                        <div class="select-items select-hide">
+                            <div data-value="en-US">American English</div>
+                            <div data-value="en-GB">British English</div>
+                            <div data-value="en-IN">Indian English</div>
+                        </div>
+                    </div>
+                    <select id="accentSelect" style="display:none;">
+                        <option value="en-US">American English</option>
+                        <option value="en-GB">British English</option>
+                        <option value="en-IN">Indian English</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label>Audio Speed:</label>
+                    <div class="custom-select" data-select="speed">
+                        <div class="select-selected">Normal (1.0x)</div>
+                        <div class="select-items select-hide">
+                            <div data-value="0.75">Slow (0.75x)</div>
+                            <div data-value="1.0">Normal (1.0x)</div>
+                            <div data-value="1.25">Fast (1.25x)</div>
+                        </div>
+                    </div>
+                    <select id="speedSelect" style="display:none;">
+                        <option value="0.75">Slow (0.75x)</option>
+                        <option value="1.0">Normal (1.0x)</option>
+                        <option value="1.25">Fast (1.25x)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="startGameBtn" class="btn btn-primary">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <h1 class="title">English Listening Game</h1>
+        <div class="container">
+            <!-- Header with Stats and Timer -->
+            <div class="game-header">
+                <div class="stat-item">
+                    <span class="stat-label">Score:</span>
+                    <span id="scoreDisplay" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Streak:</span>
+                    <span id="streakDisplay" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Level:</span>
+                    <span id="levelDisplay" class="stat-value">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Time:</span>
+                    <span id="timerDisplay" class="stat-value timer-display">30</span>
+                </div>
+            </div>
+
+            <!-- Badges Display -->
+            <div id="badgesContainer" class="badges-container"></div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+
+            <!-- Quit Button -->
+            <div class="quit-button-container">
+                <button id="quitBtn" class="btn btn-secondary">Quit</button>
+            </div>
+
+            <!-- Audio Controls -->
+            <div class="audio-controls">
+                <button id="playAudioBtn" class="btn btn-audio">=> Play Audio</button>
+                <button id="replayAudioBtn" class="btn btn-audio-small">=> Replay</button>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-section">
+                <label for="answerInput">Type what you hear:</label>
+                <textarea 
+                    id="answerInput" 
+                    class="answer-input" 
+                    placeholder="Type your answer here..."
+                    rows="3"
+                ></textarea>
+                <button id="submitBtn" class="btn btn-primary">Submit Answer</button>
+            </div>
+
+            <!-- Feedback Panel -->
+            <div id="feedbackPanel" class="feedback-panel hidden">
+                <div id="feedbackContent"></div>
+            </div>
+
+            <!-- Wrong Answers Summary -->
+            <div id="wrongAnswersSummary" class="wrong-answers-summary hidden">
+                <h3>=> Words You Got Wrong - Practice These!</h3>
+                <div id="wrongAnswersList"></div>
+                <button class="close-summary-btn" onclick="document.getElementById('wrongAnswersSummary').classList.add('hidden'); document.getElementById('modalOverlay').classList.add('hidden');">Close</button>
+            </div>
+            <div id="modalOverlay" class="modal-overlay hidden"></div>
+
+            <!-- Current Settings Display -->
+            <div class="current-settings">
+                <span id="currentDifficulty"></span> | 
+                <span id="currentMode"></span> | 
+                <span id="currentAccent"></span> | 
+                <span id="currentSpeed"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="audio.js"></script>
+    <script src="game.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

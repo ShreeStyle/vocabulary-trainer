@@ -1,0 +1,814 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background: #ffffff;
+    min-height: 100vh;
+    padding: 20px;
+    color: #000000;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="44" viewBox="0 0 32 44"><path fill="black" d="M0,0 L0,32 L10,22 L14,34 L18,32 L13,20 L22,20 Z"/></svg>') 2 2, auto;
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+/* Container */
+.container {
+    background: #ffffff;
+    border: 2px outset #808080;
+    padding: 40px;
+    box-shadow: 3px 3px 0px #000000;
+    width: 100%;
+    margin-top: 20px;
+}title {
+    font-size: 2.5rem;
+    color: #667eea;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+/* Typography */
+.title {
+    font-size: 2.5rem;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 20px 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 0px #ffffff;
+    background: #c0c0c0;
+    border: 2px outset #808080;
+    box-shadow: 3px 3px 0px #000000;
+}
+
+.subtitle {
+    text-align: center;
+    color: #000000;
+    background: none;
+    margin-bottom: 20px;
+    margin-top: 0;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}   background: none;
+    margin-bottom: 30px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+/* Settings Panel */
+.settings-panel {
+    background: #e0e0e0;
+    border: 2px inset #808080;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.setting-group {
+    margin-bottom: 20px;
+}
+
+.setting-group:last-child {
+    margin-bottom: 0;
+}
+.setting-group label {
+    display: block;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.setting-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px outset #808080;
+    font-size: 1.1rem;
+    background: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="44" viewBox="0 0 32 44"><path fill="black" d="M0,0 L0,32 L10,22 L14,34 L18,32 L13,20 L22,20 Z"/></svg>') 2 2, pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><polygon fill="black" points="0,4 8,12 16,4"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 35px;
+    display: none;
+}
+
+/* Custom Dropdown Styling for 90s Mac OS */
+.custom-select {
+    position: relative;
+    width: 100%;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="44" viewBox="0 0 32 44"><path fill="black" d="M0,0 L0,32 L10,22 L14,34 L18,32 L13,20 L22,20 Z"/></svg>') 2 2, pointer;
+}
+
+.select-selected {
+    background-color: #ffffff;
+    padding: 10px 35px 10px 12px;
+    border: 2px outset #808080;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    color: #000000;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="44" viewBox="0 0 32 44"><path fill="black" d="M0,0 L0,32 L10,22 L14,34 L18,32 L13,20 L22,20 Z"/></svg>') 2 2, pointer;
+    user-select: none;
+    position: relative;
+}
+
+/* Black triangle arrow */
+.select-selected:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    margin-top: -4px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #000000;
+}
+
+/* Arrow points up when dropdown is active */
+.select-selected.select-arrow-active:after {
+    border-top: none;
+    border-bottom: 8px solid #000000;
+    margin-top: -12px;
+}
+
+/* Dropdown options container - Mac OS menu style */
+.select-items {
+    position: absolute;
+    background-color: #ffffff;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border: 2px solid #000000;
+    border-top: none;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+    margin-top: -2px;
+}
+
+.select-hide {
+    display: none;
+}
+
+/* Individual option items */
+.select-items div {
+    color: #000000;
+    padding: 8px 12px;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="44" viewBox="0 0 32 44"><path fill="black" d="M0,0 L0,32 L10,22 L14,34 L18,32 L13,20 L22,20 Z"/></svg>') 2 2, pointer;
+    user-select: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    background-color: #ffffff;
+}
+
+/* Hover state - Mac OS blue highlight */
+.select-items div:hover:not(.disabled) {
+    background-color: #0000aa;
+    color: #ffffff;
+}
+
+/* Selected item indicator */
+.select-items div.same-as-selected {
+    background-color: #0000aa;
+    color: #ffffff;
+}
+
+/* Disabled option */
+.select-items div.disabled {
+    color: #808080;
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+    font-style: italic;
+}
+
+.select-items div.disabled:hover {
+    background-color: #e0e0e0;
+    color: #808080;
+}
+
+.setting-group select:focus {
+    outline: 2px solid #0000aa;
+    border: 2px inset #808080;
+}
+
+.setting-group select:active {
+    border: 2px inset #808080;
+    background-color: #e0e0e0;
+}
+
+.setting-group select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 90s Mac OS Dropdown Option Styling */
+.setting-group select option {
+    padding: 12px 15px;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Selected/Highlighted option - Mac OS blue highlight */
+.setting-group select option:checked {
+    background: linear-gradient(to bottom, #0066ff, #0044cc);
+    background-color: #0000aa;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+/* Disabled options - grayed out */
+.setting-group select option:disabled {
+    background-color: #e0e0e0;
+    color: #808080;
+    font-style: italic;
+}
+
+.btn-primary {
+    background: #c0c0c0;
+    color: #000000;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 3px outset #808080;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+}
+
+.btn-primary:active {
+    border: 3px inset #808080;
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: 2px outset #808080;
+    background: #c0c0c0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="44" viewBox="0 0 32 44"><path fill="black" d="M0,0 L0,32 L10,22 L14,34 L18,32 L13,20 L22,20 Z"/></svg>') 2 2, pointer;
+    text-align: center;
+    color: #000000;
+}
+.btn:hover {
+    background: #d0d0d0;
+}
+
+.btn:active {
+    border: 2px inset #808080;
+    background: #a0a0a0;
+}
+
+.btn-primary {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+
+.btn-audio {
+    padding: 10px 20px;
+    margin: 0 5px;
+}
+
+.btn-audio-small {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+
+.btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+    background: #c0c0c0;
+    color: #000000;
+}
+
+.btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+    background: white;
+    color: black;
+}   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.stat-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+/* Badges */
+.badges-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    min-height: 40px;
+/* Game Header */
+.game-header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #000000;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.stat-item {
+    background: #ffffff;
+    border: 2px inset #808080;
+    padding: 8px 12px;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #000000;
+    font-weight: bold;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.timer-display {
+    background: #ccffcc;
+    padding: 2px 8px;
+    border: 2px inset #808080;
+    min-width: 40px;
+    text-align: center;
+}
+
+.timer-display.warning {
+    background: #ffcccc;
+    color: #cc0000;
+}
+/* Badges */
+.badges-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    min-height: 35px;
+}
+
+.badge {
+    background: #ffff00;
+    border: 2px outset #808080;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #000000;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Quit Button Container */
+.quit-button-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
+    font-weight: bold;
+}   font-weight: 700;
+    color: #667eea;
+}
+
+.timer-display.warning {
+    color: #ff6b6b;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #ffffff;
+    border: 2px inset #808080;
+    margin-bottom: 15px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #0000aa;
+    width: 0%;
+}
+.progress-fill {
+    height: 100%;
+    background: #2b2b2b;
+    width: 0%;
+}   color: #333;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+/* Timer */
+.timer-container {
+    text-align: center;
+    margin-bottom: 15px;
+    border: 2px inset #808080;
+    padding: 10px;
+    background: #ffffff;
+}   background: #faf8f0;
+}
+/* Timer Container - In Same Row */
+.timer-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 2px inset #808080;
+    padding: 8px 12px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.timer-label {
+    font-size: 0.9rem;
+    color: #000000;
+    font-weight: bold;
+}
+
+.timer-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000000;
+    background: #ccffcc;
+    padding: 2px 10px;
+    border: 2px inset #808080;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
+    min-width: 45px;
+    text-align: center;
+}
+
+.timer-display.warning {
+    background: #ffcccc;
+    color: #cc0000;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+/* Audio Controls */
+.audio-controls {
+    text-align: center;
+    margin: 25px 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-audio {
+    background: #c0c0c0;
+    border: 3px outset #808080;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000000;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+}
+
+.btn-audio:active {
+    border: 3px inset #808080;
+}
+
+.btn-audio-small {
+    background: #c0c0c0;
+    border: 3px outset #808080;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000000;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+}
+
+.btn-audio-small:active {
+    border: 3px inset #808080;
+}
+
+/* Input Section */
+.input-section {
+    margin: 25px 0;
+}
+
+.input-section label {
+    display: block;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.answer-input {
+    width: 100%;
+    padding: 12px;
+    border: 3px inset #808080;
+    font-size: 1.1rem;
+    font-family: 'Courier New', Courier, monospace;
+    resize: vertical;
+    margin-bottom: 15px;
+    background: #ffffff;
+    color: #000000;
+    line-height: 1.5;
+}
+
+.answer-input:focus {
+    outline: 2px solid #0000aa;
+    border: 3px inset #808080;
+}
+/* Feedback Panel */
+.feedback-panel {
+    background: #ffffff;
+    border: 3px outset #808080;
+    padding: 20px;
+    margin: 25px 0;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.8;
+}
+
+.feedback-panel.hidden {
+    display: none;
+}
+
+.feedback-correct {
+    border: 3px solid #000000;
+}
+
+.feedback-incorrect {
+    border: 3px solid #000000;
+}
+
+.feedback-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.feedback-title.correct {
+    color: black;
+}
+
+.feedback-title.incorrect {
+    color: black;
+}
+
+.feedback-detail {
+    margin: 8px 0;
+    font-size: 0.9rem;
+}
+
+.feedback-detail strong {
+    color: black;
+}
+.your-answer {
+    background: #ffffff;
+    padding: 8px;
+    border: 2px inset #808080;
+    margin: 5px 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    word-spacing: 4px;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+}
+
+.correct-answer {
+    background: #ccffcc;
+    padding: 8px;
+    border: 2px inset #808080;
+    margin: 5px 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    word-spacing: 4px;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+}   line-height: 1.6;
+}
+
+.word-incorrect {
+    text-decoration: line-through;
+    font-weight: bold;
+    color: #aa0000;
+}
+
+.word-correct {
+    font-weight: bold;
+    color: #00aa00;
+}
+
+.bonus-points {
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 8px 0;
+}/* Current Settings */
+.current-settings {
+    text-align: center;
+    color: black;
+    font-size: 0.75rem;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid black;
+}
+
+/* Wrong Answers Summary Popup Modal */
+.wrong-answers-summary {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    padding: 25px;
+    border: 4px outset #808080;
+    margin: 0;
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.wrong-answers-summary h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #000000;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 10px;
+}
+
+.wrong-answers-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.wrong-answers-summary li {
+    background: #ffcccc;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px inset #808080;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+}
+
+.wrong-answers-summary li strong {
+    color: #cc0000;
+    font-size: 1.1rem;
+}
+
+.practice-message {
+    margin-top: 20px;
+    padding: 12px;
+    background: #ffffcc;
+    border: 2px inset #808080;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+}
+
+.close-summary-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 30px;
+    background: #c0c0c0;
+    border: 2px outset #808080;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.close-summary-btn:active {
+    border: 2px inset #808080;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .stats {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .game-header {
+        justify-content: center;
+    }
+
+    .btn-audio {
+        margin: 3px;
+        padding: 8px 15px;
+    }
+
+    .timer-display {
+        font-size: 2rem;
+    }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
