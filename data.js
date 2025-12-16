@@ -3,11 +3,11 @@
 const gameData = {
     beginner: {
         words: [
-            "map", "bag", "run", "sit", "big", "sun", "cup", "pen", "hat", "red",
-            "blue", "car", "book", "tree", "gift", "milk", "door", "hand", "face", "sky",
-            "moon", "star", "rain", "snow", "jump", "play", "happy", "small", "good", "nice",
-            "home", "food", "water", "apple", "bread", "chair", "table", "phone", "clock", "shoes",
-            "green", "white", "black", "child", "house", "write", "sleep", "smile", "speak", "light"
+            "eloquent", "resilient", "ambiguous", "meticulous", "pragmatic", "coherent", "diligent", "obsolete", "profound", "volatile",
+            "endeavor", "integrity", "paradigm", "scrutiny", "arbitrary", "catalyst", "contemplate", "discourse", "eloquence", "feasible",
+            "hypothesis", "inevitable", "innovation", "narrative", "objective", "perception", "plausible", "rational", "synthesis", "theoretical",
+            "advocate", "benevolent", "competent", "cultivate", "empirical", "exemplify", "fluctuate", "hierarchy", "implicit", "inherent",
+            "legitimate", "methodology", "perpetual", "prerequisite", "protocol", "reluctant", "subsequent", "terminate", "undertake", "vigilant"
         ],
         sentences: [
             "Success starts with practice.",
@@ -36,11 +36,11 @@ const gameData = {
     },
     intermediate: {
         words: [
-            "computer", "beautiful", "elephant", "dangerous", "breakfast", "telephone", "adventure", "wonderful", "different", "important",
-            "restaurant", "chocolate", "tomorrow", "yesterday", "together", "remember", "fantastic", "delicious", "happiness", "education",
-            "difficult", "favorite", "exercise", "president", "language", "vacation", "birthday", "mountain", "character", "business",
-            "question", "continue", "interest", "possible", "decision", "attention", "necessary", "community", "experience", "technology",
-            "situation", "available", "celebrate", "recognize", "understand", "determine", "encourage", "influence", "guarantee", "advantage"
+            "ameliorate", "conscientious", "contemporaneous", "juxtaposition", "obfuscate", "quintessential", "recalcitrant", "sagacious", "ubiquitous", "verisimilitude",
+            "acquiesce", "bellicose", "capricious", "deleterious", "ephemeral", "fastidious", "gregarious", "hegemony", "idiosyncrasy", "juxtapose",
+            "languid", "magnanimous", "nefarious", "obsequious", "pernicious", "querulous", "recalcitrant", "supercilious", "tenacious", "ubiquitous",
+            "vociferous", "zealous", "ameliorate", "anachronism", "antithesis", "apocryphal", "capitulate", "chicanery", "cogent", "conundrum",
+            "dichotomy", "duplicity", "equanimity", "erudite", "esoteric", "exacerbate", "gregarious", "iconoclast", "impetuous", "inexorable"
         ],
         sentences: [
             "Mastering English unlocks global opportunities and connections.",
@@ -69,11 +69,11 @@ const gameData = {
     },
     advanced: {
         words: [
-            "simultaneously", "extraordinary", "pharmaceutical", "architectural", "procrastination", "demonstration", "accomplishment", "environmental", "congratulations", "revolutionary",
-            "Mediterranean", "characteristic", "responsibility", "interpretation", "unfortunately", "photographer", "international", "sophisticated", "psychological", "perpendicular",
-            "administration", "recommendation", "discrimination", "infrastructure", "consciousness", "circumstances", "inappropriate", "predominantly", "substantially", "nevertheless",
-            "accountability", "comprehension", "distinguished", "embarrassment", "entrepreneurship", "exceptionally", "fundamentally", "implementation", "jurisdiction", "overwhelming",
-            "parliamentary", "questionnaire", "rehabilitation", "significantly", "transformation", "unprecedented", "visualization", "philanthropist", "authentication", "deterioration"
+            "abnegation", "abstemious", "acrimonious", "apocryphal", "assiduous", "beguiling", "circumlocution", "corroborate", "deleterious", "disparate",
+            "ebullient", "enervate", "equivocate", "evanescent", "exculpate", "fastidious", "garrulous", "hapless", "ignominious", "imperious",
+            "indefatigable", "insidious", "intransigent", "lachrymose", "loquacious", "magnanimity", "malevolent", "mendacious", "munificent", "nefarious",
+            "obdurate", "obsequious", "ostensible", "parsimonious", "pellucid", "perfidious", "perspicacious", "prevaricate", "propitious", "pusillanimous",
+            "quiescent", "recondite", "redolent", "refractory", "sacrosanct", "sanguine", "soporific", "specious", "truculent", "venal"
         ],
         sentences: [
             "The unprecedented technological advancements have revolutionized the way we communicate and interact with each other globally.",
@@ -102,16 +102,11 @@ const gameData = {
     },
     veryhard: {
         words: [
-            "antidisestablishmentarianism", "pseudopseudohypoparathyroidism", "floccinaucinihilipilification", "pneumonoultramicroscopicsilicovolcanoconiosis", "hippopotomonstrosesquippedaliophobia",
-            "supercalifragilisticexpialidocious", "dichlorodifluoromethane", "incomprehensibilities", "electroencephalographically", "immunoelectrophoretically",
-            "psychoneuroendocrinological", "hepaticocholangiogastrostomy", "spectrophotofluorometrically", "pseudopseudohypoparathyroidism", "thyroparathyroidectomized",
-            "pneumoencephalographically", "radioimmunoelectrophoresis", "psychophysicotherapeutics", "tetrahydrocannabinol", "methylenedioxymethamphetamine",
-            "counterrevolutionaries", "deinstitutionalization", "electrocardiographically", "unconstitutionality", "disproportionableness",
-            "honorificabilitudinitatibus", "trinitrophenylmethylnitramine", "cyclotrimethylenetrinitramine", "transubstantiationalist", "subdermatoglyphic",
-            "uncharacteristically", "overintellectualization", "electroencephalogram", "indistinguishability", "uncopyrightable",
-            "dermatoglyphics", "ambidextrousness", "blepharosphincterectomy", "cholecystenterorrhaphy", "dacryocystorhinostomy",
-            "duodenopancreatectomy", "encephalomyelopathy", "gastroenterocolostomy", "hemipancreatectomy", "hypercholesterolemia",
-            "immunoelectrophoresis", "laryngotracheotomy", "pancreaticoduodenectomy", "radioimmunoprecipitation", "salpingopharyngeus"
+            "absquatulate", "adscititious", "apothegm", "apricity", "borborygmus", "brobdingnagian", "callipygian", "cataglottism", "chiaroscurist", "crepuscular",
+            "defenestration", "dipsomaniac", "eburnean", "eleemosynary", "epeolatry", "eschatological", "exiguous", "floccinaucinihilipilification", "gaberlunzie", "grandiloquent",
+            "honorificabilitudinitatibus", "iatrogenic", "incunabula", "jentacular", "kakorrhaphiophobia", "lethologica", "logorrhea", "macrosmatic", "malversation", "misoneism",
+            "morosoph", "natation", "nidificate", "obambulate", "odontoloxia", "oligopsony", "omphaloskepsis", "ophidian", "oscitancy", "pandiculation",
+            "parapraxis", "paronomasia", "philtrum", "phosphene", "pneumonoultramicroscopicsilicovolcanoconiosis", "prestidigitation", "proboscidean", "quodlibet", "rodomontade", "scurrility"
         ],
         sentences: [
             "The otorhinolaryngologist specialized in diagnosing and treating extraordinarily complicated nasopharyngeal diseases using state-of-the-art immunoelectrophoretically advanced technology.",

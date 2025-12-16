@@ -26,6 +26,7 @@ const submitBtn = document.getElementById('submitBtn');
 const feedbackPanel = document.getElementById('feedbackPanel');
 const feedbackContent = document.getElementById('feedbackContent');
 const quitBtn = document.getElementById('quitBtn');
+const correctionListBtn = document.getElementById('correctionListBtn');
 const currentDifficulty = document.getElementById('currentDifficulty');
 const currentMode = document.getElementById('currentMode');
 const currentAccent = document.getElementById('currentAccent');
@@ -72,6 +73,7 @@ function attachEventListeners() {
     replayAudioBtn.addEventListener('click', playAudio);
     submitBtn.addEventListener('click', submitAnswer);
     quitBtn.addEventListener('click', quitGame);
+    correctionListBtn.addEventListener('click', showCorrectionList);
     // Enter key to submit
     answerInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -135,6 +137,10 @@ function nextLevel() {
     
     // Hide feedback panel
     feedbackPanel.classList.add('hidden');
+    
+    // Reset audio buttons - show Play Audio, hide Replay
+    playAudioBtn.classList.remove('hidden');
+    replayAudioBtn.classList.add('hidden');
     
     // Enable audio buttons
     playAudioBtn.disabled = false;
@@ -210,6 +216,10 @@ function playAudio() {
             // On end
             playAudioBtn.disabled = false;
             replayAudioBtn.disabled = false;
+            
+            // After first play, hide Play Audio and show Replay
+            playAudioBtn.classList.add('hidden');
+            replayAudioBtn.classList.remove('hidden');
             
             // Start timer on first play
             if (!game.getState().isPlaying) {
@@ -409,6 +419,18 @@ function quitGame() {
     }
 }
 
+// Show correction list during game
+function showCorrectionList() {
+    const wrongAnswers = game.getState().wrongAnswers;
+    
+    if (wrongAnswers.length === 0) {
+        alert('No mistakes yet! Keep up the good work!');
+        return;
+    }
+    
+    showWrongAnswersSummary(wrongAnswers);
+}
+
 // Show wrong answers summary
 function showWrongAnswersSummary(wrongAnswers) {
     const summaryDiv = document.getElementById('wrongAnswersSummary');
@@ -424,10 +446,9 @@ function showWrongAnswersSummary(wrongAnswers) {
     // Build list of wrong answers
     let html = '<ul>';
     wrongAnswers.forEach((item, index) => {
-        html += `<li><strong>${item.word}</strong><br>You typed: "${item.yourAnswer}"</li>`;
+        html += `<li><strong>Word:</strong> ${item.word}<br><strong>You wrote:</strong> ${item.yourAnswer}</li>`;
     });
     html += '</ul>';
-    html += '<p class="practice-message">=> Practice these words so you won\'t forget them next time!</p>';
     
     listDiv.innerHTML = html;
     summaryDiv.classList.remove('hidden');

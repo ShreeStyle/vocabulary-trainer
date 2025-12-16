@@ -123,12 +123,13 @@
             <!-- Quit Button -->
             <div class="quit-button-container">
                 <button id="quitBtn" class="btn btn-secondary">Quit</button>
+                <button id="correctionListBtn" class="btn btn-secondary">Correction List</button>
             </div>
 
             <!-- Audio Controls -->
             <div class="audio-controls">
                 <button id="playAudioBtn" class="btn btn-audio">=> Play Audio</button>
-                <button id="replayAudioBtn" class="btn btn-audio-small">=> Replay</button>
+                <button id="replayAudioBtn" class="btn btn-audio-small hidden">=> Replay</button>
             </div>
 
             <!-- Input Area -->
@@ -150,7 +151,7 @@
 
             <!-- Wrong Answers Summary -->
             <div id="wrongAnswersSummary" class="wrong-answers-summary hidden">
-                <h3>=> Words You Got Wrong - Practice These!</h3>
+                <h3>Wrong Words</h3>
                 <div id="wrongAnswersList"></div>
                 <button class="close-summary-btn" onclick="document.getElementById('wrongAnswersSummary').classList.add('hidden'); document.getElementById('modalOverlay').classList.add('hidden');">Close</button>
             </div>

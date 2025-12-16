@@ -1,259 +1,263 @@
-# English Listening Game 🎧
+# English Listening Game
 
-A complete web-based English listening comprehension game built with vanilla HTML, CSS, and JavaScript. Help users improve their listening skills through audio-based challenges!
+An interactive web-based application designed to improve English vocabulary and listening comprehension through audio-based challenges. Built with vanilla HTML, CSS, and JavaScript featuring a retro 90s Mac OS interface.
 
 ## Features
 
-### 🎮 Core Gameplay
-- **Word Mode**: Hear and type single words
-- **Sentence Mode**: Hear and type complete sentences (unlocked after 10 levels)
-- Audio playback with Web Speech API (Text-to-Speech)
-- Real-time feedback with word-by-word comparison
-- Countdown timer with visual warnings
+### Core Gameplay
+- Word Mode: Listen and type single vocabulary words
+- Sentence Mode: Listen and type complete sentences
+- Text-to-speech audio playback using Web Speech API
+- Real-time feedback with detailed word-by-word comparison
+- Timer with visual countdown and warnings
+- Wrong words tracking with correction list
 
-### 📊 Difficulty Levels
-- **Beginner**: Short words, slower speed (0.75x), 20-second time limit
-- **Intermediate**: Medium phrases, normal speed (1x), 15-second time limit
-- **Advanced**: Full sentences, faster speed (1.25x), 10-second time limit
+### Difficulty Levels
+- Beginner: Advanced vocabulary words, slower speed (0.75x), 30-second limit
+- Intermediate: Complex academic terms, normal speed (1.0x), 30-second limit
+- Advanced: Sophisticated and rare vocabulary, faster speed (1.25x), 30-second limit
+- Very Hard: Extremely rare and challenging words, fastest speed (1.5x), 30-second limit
 
-### 🎯 Scoring System
-- +10 points for correct answers
-- +5 bonus points for answers within first 5 seconds
-- Streak counter with fire emoji 🔥
-- Progress bar showing level advancement
-- High score tracking (saved in localStorage)
+### Scoring System
+- Base points for correct answers
+- Bonus points for fast responses
+- Streak counter tracking consecutive correct answers
+- Progress bar indicating level advancement
+- High score persistence using localStorage
 
-### 🏆 Badges & Achievements
-- **🔥 Hot Streak** - 5 correct answers in a row
-- **🔥🔥 Fire Master** - 10 correct answers in a row
-- **🔥🔥🔥 Legend** - 20 correct answers in a row
-- **⭐ Daily Champion** - Complete 10 levels in one session
+### Achievements
+- Hot Streak: 5 correct answers in a row
+- Fire Master: 10 correct answers in a row
+- Legend: 20 correct answers in a row
+- Daily Champion: Complete 10 levels in one session
 
-### 🌍 Accent Support
-- 🇺🇸 American English (en-US)
-- 🇬🇧 British English (en-GB)
-- 🇮🇳 Indian English (en-IN)
+### Language Support
+- American English (en-US)
+- British English (en-GB)
+- Indian English (en-IN)
 
-### ⚙️ Customization
-- Adjustable audio speed: 0.75x (slow), 1x (normal), 1.25x (fast)
-- Persistent settings across game sessions
-- Progress saved in localStorage
+### Customization
+- Adjustable audio playback speed: 0.75x, 1.0x, 1.25x
+- Persistent settings across sessions
+- Progress tracking and saving
+- Correction list to review mistakes during gameplay
 
 ## Project Structure
 
 ```
 learn-english/
-├── index.html          # Main HTML structure
-├── styles.css          # Complete styling with animations
-├── data.js            # Word/sentence data by difficulty
-├── audio.js           # Audio playback manager (Web Speech API)
+├── index.html          # Main HTML structure and UI
+├── styles.css          # Complete styling with 90s Mac OS theme
+├── data.js            # Vocabulary data organized by difficulty
+├── audio.js           # Audio manager using Web Speech API
 ├── game.js            # Game logic and state management
 ├── app.js             # UI controller and event handlers
-└── README.md          # This file
+├── custom-dropdown.js # Custom dropdown menu implementation
+└── README.md          # Documentation
 ```
 
 ## Architecture
 
-### Component Breakdown
+### Component Overview
 
-1. **Welcome Screen** (`index.html`)
-   - Difficulty selector
-   - Mode selector (Word/Sentence)
-   - Accent selector
-   - Speed control
-   - Start button
+1. Welcome Screen
+   - Difficulty level selector
+   - Game mode selector
+   - Accent preference selector
+   - Playback speed control
+   - Start game button
 
-2. **Game Screen** (`index.html`)
-   - Score/Streak/Level display
-   - Badge container
-   - Progress bar
-   - Timer countdown
-   - Audio controls (Play/Replay)
-   - Answer input area
-   - Feedback panel
+2. Game Screen
+   - Score, streak, level, and timer display
+   - Achievement badges container
+   - Progress indicator
+   - Audio control buttons (Play Audio / Replay)
+   - Answer input textarea
+   - Submit button
+   - Feedback panel with detailed results
+   - Quit and Correction List buttons
    - Current settings display
 
-3. **Data Layer** (`data.js`)
-   - Word/sentence pools by difficulty
-   - Badge definitions
-   - Helper functions for data retrieval
+3. Data Layer (data.js)
+   - Vocabulary pools organized by difficulty
+   - Achievement badge definitions
+   - Helper functions for data access
 
-4. **Audio Manager** (`audio.js`)
+4. Audio Manager (audio.js)
    - Web Speech API integration
-   - Voice selection by accent
-   - Speed/rate control
-   - Playback state management
+   - Voice selection based on accent
+   - Playback rate control
+   - Audio state management
 
-5. **Game Logic** (`game.js`)
-   - State management
-   - Score calculation
-   - Answer validation
-   - Badge checking
-   - Timer management
+5. Game Logic (game.js)
+   - Complete state management
+   - Score calculation algorithms
+   - Answer validation and comparison
+   - Achievement checking
+   - Timer control
    - localStorage persistence
 
-6. **UI Controller** (`app.js`)
-   - Screen transitions
-   - Event handling
-   - Feedback rendering
-   - Display updates
+6. UI Controller (app.js)
+   - Screen navigation
+   - Event listener management
+   - Dynamic feedback rendering
+   - Display synchronization
+   - Modal windows for corrections
 
-### State Flow
+## User Interface Design
 
-```
-User selects settings → Game initialized → Level starts
-    ↓
-Audio plays → Timer starts → User types answer
-    ↓
-Submit → Answer checked → Score updated → Badges checked
-    ↓
-Feedback shown → Next level or Quit
-```
+The application features a retro 90s Macintosh operating system aesthetic:
+- Classic window borders and buttons
+- Outset and inset 3D effects
+- Monospace Courier New font
+- Traditional Mac OS color palette
+- Custom dropdown menus
+- Arrow cursor styling
 
-### Data Structures
-
+## State Management
 ```javascript
-// Game State
+// Game State Structure
 {
-    difficulty: 'beginner' | 'intermediate' | 'advanced',
+    difficulty: 'beginner' | 'intermediate' | 'advanced' | 'veryhard',
     mode: 'word' | 'sentence',
     accent: 'en-US' | 'en-GB' | 'en-IN',
-    speed: 0.75 | 1.0 | 1.25,
+    speed: number,
     score: number,
     streak: number,
     level: number,
     levelsCompleted: number,
     earnedBadges: string[],
     currentChallenge: string,
-    timeRemaining: number
-}
-
-// Result Object
-{
-    isCorrect: boolean,
-    points: number,
-    bonusPoints: number,
-    correctAnswer: string,
-    userAnswer: string,
-    newBadges: Badge[],
-    streak: number,
-    score: number
+    timeRemaining: number,
+    wrongAnswers: array
 }
 ```
 
 ## How to Use
 
-1. **Open the game**: Simply open `index.html` in a modern web browser
-2. **Select settings**: Choose difficulty, mode, accent, and speed
-3. **Start playing**: Click "Start Game"
-4. **Listen**: Audio plays automatically, or click replay
-5. **Type**: Enter what you hear in the text area
-6. **Submit**: Press Enter or click Submit
-7. **Continue**: Click "Next Challenge" to proceed
+1. Open index.html in a modern web browser
+2. Select your preferred difficulty level
+3. Choose game mode (Word or Sentence)
+4. Select accent preference
+5. Adjust audio playback speed if needed
+6. Click Start Game
+7. Listen to the audio (automatically plays)
+8. Type what you hear in the text area
+9. Submit your answer
+10. Review feedback and continue to next level
+11. Access Correction List anytime to review mistakes
 
 ## Browser Compatibility
 
-- Chrome/Edge: ✅ Full support
-- Safari: ✅ Full support
-- Firefox: ✅ Full support (limited voice selection)
+- Chrome/Edge: Full support with all voices
+- Safari: Full support with system voices
+- Firefox: Full support with limited voice selection
 
-**Note**: The Web Speech API requires an internet connection for some voices.
+Note: Web Speech API requires internet connection for some voices.
 
-## Core Logic Pseudocode
+## Game Flow
 
-### Game Flow
 ```
-FUNCTION startGame():
-    Load settings from UI
-    Initialize game state
-    Show game screen
-    Start first level
-
-FUNCTION startNewLevel():
-    Increment level counter
-    Generate random challenge based on difficulty and mode
-    Reset timer to difficulty's time limit
-    Reset input field
-    Auto-play audio
-
-FUNCTION playAudio():
-    Get current challenge text
-    Select voice based on accent
-    Set playback rate to speed
-    Speak text using Web Speech API
-    Start timer on first play
-
-FUNCTION submitAnswer():
-    Stop timer
-    Normalize user answer (lowercase, trim, remove punctuation)
-    Compare with correct answer
-    Calculate points (base + bonus)
-    Update score and streak
-    Check for new badges
-    Show feedback with word comparison
-    Save progress to localStorage
-
-FUNCTION checkAnswer(userAnswer):
-    Normalize both answers
-    Compare strings
-    IF correct:
-        Award 10 points
-        IF answered within 5 seconds: Award 5 bonus points
-        Increment streak
-    ELSE:
-        Reset streak to 0
-    Check for badge achievements
-    RETURN result object
-
-FUNCTION checkBadges():
-    IF streak == 5: Award "Hot Streak" badge
-    IF streak == 10: Award "Fire Master" badge
-    IF streak == 20: Award "Legend" badge
-    IF level >= 10: Award "Daily Champion" badge
-    RETURN new badges array
+User Configuration → Game Initialization → Level Start
+    ↓
+Audio Playback → Timer Start → User Input
+    ↓
+Answer Submission → Validation → Score Update
+    ↓
+Achievement Check → Feedback Display → Next Level
 ```
 
-## Extending the Game
+## Key Functions
 
-### Add New Difficulty Level
-```javascript
-// In data.js
-extreme: {
-    words: [...],
-    sentences: [...],
-    timeLimit: 7,
-    defaultSpeed: 1.5
-}
-```
+### Starting a New Level
+- Selects unused vocabulary from pool
+- Resets timer based on difficulty
+- Shows Play Audio button
+- Clears previous input and feedback
 
-### Add More Badges
-```javascript
-// In data.js
-perfectRound: {
-    id: "perfectRound",
-    name: "💯 Perfect Round",
-    description: "10 levels with no mistakes!",
-    requirement: 10
-}
-```
+### Audio Playback
+- First play shows "Play Audio" button
+- After playing, switches to "Replay" button
+- Starts countdown timer on first play
+- Disables buttons during playback
 
-### Add Leaderboard
-- Store scores with timestamps in localStorage
-- Create leaderboard UI component
-- Sort and display top scores
+### Answer Validation
+- Normalizes user input (lowercase, trim, punctuation removal)
+- Compares with correct answer
+- Calculates points and bonuses
+- Updates streak counter
+- Tracks wrong answers for correction list
+- Checks for new achievement badges
 
-### Add User Accounts
-- Integrate with backend API
-- Store progress in database
-- Sync across devices
+### Correction List
+- Displays all incorrect answers during session
+- Shows correct word and user's attempt
+- Accessible anytime during gameplay
+- Modal popup with clean formatting
 
-## Development Notes
+## Vocabulary Difficulty Progression
 
-- **No dependencies**: Pure vanilla JavaScript
-- **Responsive design**: Works on desktop and mobile
-- **Persistent state**: Uses localStorage for progress
-- **Modular code**: Separated concerns across files
-- **Extensible**: Easy to add new features
+### Beginner Level
+Words like: eloquent, resilient, pragmatic, paradigm, catalyst, methodology
+
+### Intermediate Level
+Words like: ameliorate, juxtaposition, ubiquitous, verisimilitude, iconoclast
+
+### Advanced Level
+Words like: abnegation, perspicacious, indefatigable, pusillanimous, recondite
+
+### Very Hard Level
+Words like: absquatulate, floccinaucinihilipilification, pneumonoultramicroscopicsilicovolcanoconiosis
+
+## Extending the Application
+
+### Adding New Vocabulary
+Edit data.js and add words to the appropriate difficulty level array.
+
+### Creating New Achievements
+Define new badge objects in data.js with unique IDs and requirements.
+
+### Customizing Appearance
+Modify styles.css to change colors, fonts, spacing, and visual effects.
+
+### Adding Features
+- User authentication system
+- Online leaderboards
+- Additional language support
+- Voice recording comparison
+- Progress analytics dashboard
+- Social sharing capabilities
+
+## Technical Implementation
+
+### Audio Management
+Uses Web Speech API's SpeechSynthesisUtterance for text-to-speech with configurable:
+- Voice selection by language/accent
+- Playback rate/speed control
+- Event handling for start/end callbacks
+
+### Data Persistence
+LocalStorage stores:
+- High scores
+- Levels completed
+- User preferences
+- Game settings
+
+### Answer Comparison
+Algorithm normalizes both correct answer and user input:
+- Convert to lowercase
+- Remove extra whitespace
+- Strip punctuation
+- Word-by-word comparison for detailed feedback
+
+## Development Guidelines
+
+- Pure vanilla JavaScript (no frameworks)
+- Modular code organization
+- Separation of concerns
+- Event-driven architecture
+- Responsive design principles
+- Cross-browser compatibility
 
 ## License
 
@@ -261,4 +265,4 @@ Free to use for educational purposes.
 
 ---
 
-**Enjoy improving your English listening skills! 🎯🔥**
+Improve your English vocabulary through interactive listening practice.

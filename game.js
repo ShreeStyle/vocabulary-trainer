@@ -235,7 +235,7 @@ class Game {
             streak: 0,
             level: 0,
             levelsCompleted: this.state.levelsCompleted,
-            earnedBadges: this.state.earnedBadges,
+            earnedBadges: [],
             currentChallenge: null,
             currentAnswer: null,
             timeRemaining: 30,
@@ -266,7 +266,7 @@ class Game {
         if (savedProgress) {
             const progress = JSON.parse(savedProgress);
             this.state.levelsCompleted = progress.levelsCompleted || 0;
-            this.state.earnedBadges = progress.earnedBadges || [];
+            // Don't load earnedBadges - let them earn badges fresh each game session
             
             console.log('Progress loaded:', progress);
         }
