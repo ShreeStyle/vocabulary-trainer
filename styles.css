@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Courier New', Courier, monospace;
-    background: #ffffff;
+    background: #f0f0f0;
     min-height: 100vh;
     padding: 20px;
     color: #000000;
@@ -18,7 +18,7 @@ body {
 .screen {
     display: none;
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -33,18 +33,13 @@ body {
 /* Container */
 .container {
     background: #ffffff;
-    border: 2px outset #808080;
+    border: 3px outset #808080;
     padding: 40px;
-    box-shadow: 3px 3px 0px #000000;
+    box-shadow: 5px 5px 0px #000000;
     width: 100%;
     margin-top: 20px;
-}title {
-    font-size: 2.5rem;
-    color: #667eea;
-    text-align: center;
-    margin-bottom: 10px;
-    font-weight: 700;
 }
+
 /* Typography */
 .title {
     font-size: 2.5rem;
@@ -57,22 +52,19 @@ body {
     letter-spacing: 3px;
     text-shadow: 2px 2px 0px #ffffff;
     background: #c0c0c0;
-    border: 2px outset #808080;
-    box-shadow: 3px 3px 0px #000000;
+    border: 3px outset #808080;
+    box-shadow: 5px 5px 0px #000000;
 }
 
 .subtitle {
     text-align: center;
     color: #000000;
     background: none;
-    margin-bottom: 20px;
-    margin-top: 0;
+    margin-bottom: 30px;
+    margin-top: 20px;
     font-size: 1.2rem;
     letter-spacing: 1px;
-}   background: none;
-    margin-bottom: 30px;
-    font-size: 1rem;
-    letter-spacing: 1px;
+    font-weight: bold;
 }
 /* Settings Panel */
 .settings-panel {
@@ -93,7 +85,7 @@ body {
     display: block;
     font-weight: bold;
     color: #000000;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-size: 1.1rem;
 }
 
@@ -321,32 +313,59 @@ body {
     color: #000000;
 }
 
-.btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
+/* Game Header */
+.game-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #e0e0e0;
+    border: 3px inset #808080;
 }
 
-.btn:disabled:hover {
-    background: white;
-    color: black;
-}   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+.stat-item {
+    background: #ffffff;
+    border: 2px outset #808080;
+    padding: 10px 15px;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
 }
 
 .stat-label {
-    font-size: 0.9rem;
-    opacity: 0.9;
+    font-size: 0.95rem;
+    color: #000000;
+    font-weight: bold;
 }
 
 .stat-value {
     font-size: 1.3rem;
-    font-weight: 700;
-    margin-left: 5px;
+    font-weight: bold;
+    color: #000000;
 }
 
+.timer-display {
+    background: #ccffcc;
+    padding: 4px 10px;
+    border: 2px inset #808080;
+    min-width: 45px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 1px;
+}
+
+.timer-display.warning {
+    background: #ffcccc;
+    color: #cc0000;
+    font-weight: bold;
+}
 /* Badges */
 .badges-container {
     display: flex;
@@ -354,180 +373,61 @@ body {
     flex-wrap: wrap;
     margin-bottom: 20px;
     min-height: 40px;
-/* Game Header */
-.game-header {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid #000000;
-}
-
-.stats {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-.stat-item {
-    background: #ffffff;
+    justify-content: center;
+    padding: 10px;
+    background: #f5f5f5;
     border: 2px inset #808080;
-    padding: 8px 12px;
-    font-family: 'Courier New', Courier, monospace;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    color: #000000;
-    font-weight: bold;
-}
-
-.stat-value {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #000000;
-}
-
-.timer-display {
-    background: #ccffcc;
-    padding: 2px 8px;
-    border: 2px inset #808080;
-    min-width: 40px;
-    text-align: center;
-}
-
-.timer-display.warning {
-    background: #ffcccc;
-    color: #cc0000;
-}
-/* Badges */
-.badges-container {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-    min-height: 35px;
 }
 
 .badge {
     background: #ffff00;
     border: 2px outset #808080;
-    padding: 5px 10px;
-    font-size: 0.85rem;
+    padding: 8px 15px;
+    font-size: 0.9rem;
     font-weight: bold;
     color: #000000;
     font-family: 'Courier New', Courier, monospace;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
-/* Quit Button Container */
-.quit-button-container {
-    text-align: center;
-    margin-bottom: 50px;
-}
-    font-weight: bold;
-}   font-weight: 700;
-    color: #667eea;
-}
-
-.timer-display.warning {
-    color: #ff6b6b;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
 /* Progress Bar */
 .progress-bar {
     width: 100%;
-    height: 20px;
+    height: 25px;
     background: #ffffff;
-    border: 2px inset #808080;
-    margin-bottom: 15px;
+    border: 3px inset #808080;
+    margin-bottom: 20px;
 }
 
 .progress-fill {
     height: 100%;
     background: #0000aa;
     width: 0%;
+    transition: width 0.3s ease;
 }
-.progress-fill {
-    height: 100%;
-    background: #2b2b2b;
-    width: 0%;
-}   color: #333;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-/* Timer */
-.timer-container {
+
+/* Quit Button Container */
+.quit-button-container {
     text-align: center;
-    margin-bottom: 15px;
-    border: 2px inset #808080;
-    padding: 10px;
-    background: #ffffff;
-}   background: #faf8f0;
+    margin-bottom: 30px;
 }
-/* Timer Container - In Same Row */
-.timer-container {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #ffffff;
-    border: 2px inset #808080;
-    padding: 8px 12px;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.timer-label {
-    font-size: 0.9rem;
-    color: #000000;
-    font-weight: bold;
-}
-
-.timer-display {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #000000;
-    background: #ccffcc;
-    padding: 2px 10px;
-    border: 2px inset #808080;
-    font-family: 'Courier New', Courier, monospace;
-    letter-spacing: 2px;
-    min-width: 45px;
-    text-align: center;
-}
-
-.timer-display.warning {
-    background: #ffcccc;
-    color: #cc0000;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
 /* Audio Controls */
 .audio-controls {
     text-align: center;
-    margin: 25px 0;
+    margin: 30px 0;
     display: flex;
     gap: 15px;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    background: #f0f0f0;
+    border: 2px inset #808080;
 }
 
 .btn-audio {
     background: #c0c0c0;
     border: 3px outset #808080;
-    padding: 12px 25px;
+    padding: 15px 30px;
     font-size: 1.1rem;
     font-weight: bold;
     color: #000000;
@@ -535,14 +435,19 @@ body {
     cursor: pointer;
 }
 
+.btn-audio:hover {
+    background: #d0d0d0;
+}
+
 .btn-audio:active {
     border: 3px inset #808080;
+    background: #a0a0a0;
 }
 
 .btn-audio-small {
     background: #c0c0c0;
     border: 3px outset #808080;
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 1rem;
     font-weight: bold;
     color: #000000;
@@ -550,47 +455,63 @@ body {
     cursor: pointer;
 }
 
+.btn-audio-small:hover {
+    background: #d0d0d0;
+}
+
 .btn-audio-small:active {
     border: 3px inset #808080;
+    background: #a0a0a0;
 }
 
 /* Input Section */
 .input-section {
-    margin: 25px 0;
+    margin: 30px 0;
+    padding: 25px;
+    background: #f8f8f8;
+    border: 3px inset #808080;
 }
 
 .input-section label {
     display: block;
     font-weight: bold;
     color: #000000;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
+    margin-bottom: 12px;
+    font-size: 1.15rem;
     font-family: 'Courier New', Courier, monospace;
 }
 
 .answer-input {
     width: 100%;
-    padding: 12px;
+    padding: 15px;
     border: 3px inset #808080;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-family: 'Courier New', Courier, monospace;
     resize: vertical;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     background: #ffffff;
     color: #000000;
-    line-height: 1.5;
+    line-height: 1.6;
+    min-height: 80px;
 }
 
 .answer-input:focus {
     outline: 2px solid #0000aa;
-    border: 3px inset #808080;
+    background: #ffffcc;
 }
+
+.input-section .btn-primary {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+}
+
 /* Feedback Panel */
 .feedback-panel {
     background: #ffffff;
     border: 3px outset #808080;
-    padding: 20px;
-    margin: 25px 0;
+    padding: 25px;
+    margin: 30px 0;
     font-family: 'Courier New', Courier, monospace;
     line-height: 1.8;
 }
@@ -600,42 +521,48 @@ body {
 }
 
 .feedback-correct {
-    border: 3px solid #000000;
+    border: 3px solid #008000;
+    background: #e6ffe6;
 }
 
 .feedback-incorrect {
-    border: 3px solid #000000;
+    border: 3px solid #cc0000;
+    background: #ffe6e6;
 }
 
 .feedback-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000000;
 }
 
 .feedback-title.correct {
-    color: black;
+    color: #008000;
 }
 
 .feedback-title.incorrect {
-    color: black;
+    color: #cc0000;
 }
 
 .feedback-detail {
-    margin: 8px 0;
-    font-size: 0.9rem;
+    margin: 12px 0;
+    font-size: 1rem;
 }
 
 .feedback-detail strong {
-    color: black;
+    color: #000000;
+    font-size: 1.05rem;
 }
+
 .your-answer {
     background: #ffffff;
-    padding: 8px;
+    padding: 12px;
     border: 2px inset #808080;
-    margin: 5px 0;
+    margin: 8px 0;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.95rem;
+    font-size: 1rem;
     word-spacing: 4px;
     letter-spacing: 0.5px;
     line-height: 1.6;
@@ -643,40 +570,51 @@ body {
 
 .correct-answer {
     background: #ccffcc;
-    padding: 8px;
+    padding: 12px;
     border: 2px inset #808080;
-    margin: 5px 0;
+    margin: 8px 0;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.95rem;
+    font-size: 1rem;
     word-spacing: 4px;
     letter-spacing: 0.5px;
     line-height: 1.6;
-}   line-height: 1.6;
 }
 
 .word-incorrect {
     text-decoration: line-through;
     font-weight: bold;
-    color: #aa0000;
+    color: #cc0000;
+    background: #ffcccc;
+    padding: 2px 4px;
 }
 
 .word-correct {
     font-weight: bold;
-    color: #00aa00;
+    color: #008000;
+    background: #ccffcc;
+    padding: 2px 4px;
 }
 
 .bonus-points {
     font-weight: bold;
-    font-size: 1rem;
-    margin: 8px 0;
-}/* Current Settings */
+    font-size: 1.1rem;
+    margin: 12px 0;
+    color: #0000aa;
+    padding: 10px;
+    background: #e6f0ff;
+    border: 2px outset #808080;
+    text-align: center;
+}
+/* Current Settings */
 .current-settings {
     text-align: center;
-    color: black;
-    font-size: 0.75rem;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid black;
+    color: #000000;
+    font-size: 0.85rem;
+    margin-top: 25px;
+    padding: 15px;
+    border: 2px inset #808080;
+    background: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* Wrong Answers Summary Popup Modal */
@@ -686,52 +624,55 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background: #ffffff;
-    padding: 25px;
+    padding: 30px;
     border: 4px outset #808080;
     margin: 0;
-    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.6);
     z-index: 1000;
-    max-width: 600px;
+    max-width: 700px;
     width: 90%;
     max-height: 80vh;
     overflow-y: auto;
 }
 
 .wrong-answers-summary h3 {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
     color: #000000;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
-    border-bottom: 2px solid #000000;
-    padding-bottom: 10px;
+    border-bottom: 3px solid #000000;
+    padding-bottom: 15px;
+    background: #ffcccc;
+    padding: 15px;
+    border: 2px outset #808080;
 }
 
 .wrong-answers-summary ul {
     list-style: none;
     padding: 0;
-    margin: 15px 0;
+    margin: 20px 0;
 }
 
 .wrong-answers-summary li {
-    background: #ffcccc;
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px inset #808080;
+    background: #ffe6e6;
+    padding: 15px;
+    margin: 12px 0;
+    border: 3px inset #808080;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem;
+    font-size: 1.05rem;
 }
 
 .wrong-answers-summary li strong {
     color: #cc0000;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
 }
 
 .practice-message {
     margin-top: 20px;
-    padding: 12px;
+    padding: 15px;
     background: #ffffcc;
-    border: 2px inset #808080;
+    border: 3px inset #808080;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1rem;
     font-style: italic;
@@ -740,17 +681,23 @@ body {
 
 .close-summary-btn {
     display: block;
-    margin: 20px auto 0;
-    padding: 10px 30px;
+    margin: 25px auto 0;
+    padding: 12px 40px;
     background: #c0c0c0;
-    border: 2px outset #808080;
+    border: 3px outset #808080;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
     cursor: pointer;
 }
 
+.close-summary-btn:hover {
+    background: #d0d0d0;
+}
+
 .close-summary-btn:active {
-    border: 2px inset #808080;
+    border: 3px inset #808080;
+    background: #a0a0a0;
 }
 
 .modal-overlay {
@@ -759,40 +706,53 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 999;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
-        padding: 15px;
+        padding: 20px;
     }
 
     .title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        padding: 15px 20px;
     }
 
     .subtitle {
-        font-size: 0.9rem;
-    }
-
-    .stats {
-        justify-content: center;
-        width: 100%;
+        font-size: 1rem;
     }
 
     .game-header {
         justify-content: center;
+        gap: 10px;
     }
 
-    .btn-audio {
-        margin: 3px;
-        padding: 8px 15px;
+    .stat-item {
+        min-width: 100px;
+        padding: 8px 12px;
     }
 
-    .timer-display {
-        font-size: 2rem;
+    .audio-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-audio,
+    .btn-audio-small {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    .input-section {
+        padding: 15px;
+    }
+
+    .wrong-answers-summary {
+        width: 95%;
+        padding: 20px;
     }
 }
 

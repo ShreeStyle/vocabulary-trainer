@@ -24,6 +24,10 @@ class AudioManager {
         
         if (this.isReady) {
             console.log(`Loaded ${this.voices.length} voices`);
+            // Log all available voices for debugging
+            this.voices.forEach((voice, i) => {
+                console.log(`${i}: ${voice.name} (${voice.lang})`);
+            });
         }
     }
 
@@ -33,37 +37,60 @@ class AudioManager {
             this.loadVoices();
         }
 
-        // Map accent codes to voice selection criteria
+        // Prioritize high-quality Google and Apple voices
         const accentMap = {
-            'en-US': ['en-US', 'en_US', 'English (United States)', 'Microsoft David', 'Google US English'],
-            'en-GB': ['en-GB', 'en_GB', 'English (United Kingdom)', 'Microsoft George', 'Google UK English'],
-            'en-IN': ['en-IN', 'en_IN', 'English (India)', 'Microsoft Ravi', 'Google हिन्दी']
+            'en-US': [
+                'Google US English',
+                'Samantha',
+                'Alex',
+                'en-US',
+                'Microsoft David',
+                'English (United States)'
+            ],
+            'en-GB': [
+                'Google UK English Female',
+                'Google UK English Male', 
+                'Daniel',
+                'Kate',
+                'en-GB',
+                'Microsoft George',
+                'English (United Kingdom)'
+            ],
+            'en-IN': [
+                'Google हिन्दी',
+                'Veena',
+                'en-IN',
+                'Microsoft Ravi',
+                'English (India)'
+            ]
         };
 
         const searchTerms = accentMap[accent] || accentMap['en-US'];
 
-        // Try to find a matching voice
+        // Try to find a matching voice (prioritize order)
         for (const term of searchTerms) {
             const voice = this.voices.find(v => 
-                v.lang.includes(term) || 
                 v.name.includes(term) ||
+                v.lang.includes(term) || 
                 v.voiceURI.includes(term)
             );
             if (voice) {
-                console.log(`Selected voice: ${voice.name} for accent: ${accent}`);
+                console.log(`✓ Selected voice: ${voice.name} (${voice.lang}) for accent: ${accent}`);
                 return voice;
             }
         }
 
-        // Fallback: find any English voice
-        const fallbackVoice = this.voices.find(v => v.lang.startsWith('en'));
+        // Fallback: find any clear English voice
+        const fallbackVoice = this.voices.find(v => 
+            v.lang.startsWith('en') && !v.name.toLowerCase().includes('novelty')
+        );
         if (fallbackVoice) {
-            console.log(`Using fallback voice: ${fallbackVoice.name}`);
+            console.log(`⚠ Using fallback voice: ${fallbackVoice.name}`);
             return fallbackVoice;
         }
 
-        // Last resort: use first available voice
-        console.log('Using default voice');
+        // Last resort
+        console.log('⚠ Using default voice');
         return this.voices[0];
     }
 
@@ -72,10 +99,10 @@ class AudioManager {
             // Cancel any ongoing speech
             this.stop();
 
-            // Wait a bit to ensure previous speech is cancelled
+            // Wait to ensure previous speech is fully cancelled
             setTimeout(() => {
-                // Clean the text - remove special characters that might cause issues
-                const cleanText = text.trim();
+                // Clean and normalize text
+                const cleanText = text.trim().replace(/\s+/g, ' ');
                 
                 this.currentUtterance = new SpeechSynthesisUtterance(cleanText);
                 
@@ -88,37 +115,48 @@ class AudioManager {
                     this.currentUtterance.lang = accent;
                 }
 
-                // Set speed (rate) - clamp between 0.5 and 2.0
-                const clampedSpeed = Math.max(0.5, Math.min(2.0, parseFloat(speed)));
+                // IMPROVED: Better speed control for clarity
+                // Reduce speed range for better pronunciation
+                let clampedSpeed = Math.max(0.7, Math.min(1.3, parseFloat(speed)));
+                
+                // For very long words, automatically slow down a bit
+                if (cleanText.length > 15) {
+                    clampedSpeed *= 0.9;
+                }
+                
                 this.currentUtterance.rate = clampedSpeed;
 
-                // Set other properties for better clarity
-                this.currentUtterance.pitch = 1.0;
-                this.currentUtterance.volume = 1.0;
+                // IMPROVED: Optimize for clarity
+                this.currentUtterance.pitch = 1.0; // Natural pitch
+                this.currentUtterance.volume = 1.0; // Full volume
 
                 // Event handlers
                 this.currentUtterance.onstart = () => {
-                    console.log('Speech started');
+                    console.log(`🔊 Speaking: "${cleanText}"`);
                     if (onStart) onStart();
                 };
 
                 this.currentUtterance.onend = () => {
-                    console.log('Speech ended');
+                    console.log('✓ Speech completed');
                     if (onEnd) onEnd();
                     resolve();
                 };
 
                 this.currentUtterance.onerror = (event) => {
-                    console.error('Speech error:', event.error);
-                    // Try to call onEnd even on error
+                    console.error('❌ Speech error:', event.error);
                     if (onEnd) onEnd();
                     reject(event.error);
                 };
 
-                // Speak
-                this.synthesis.speak(this.currentUtterance);
-                console.log(`Speaking: "${cleanText}" with accent: ${accent}, speed: ${clampedSpeed}`);
-            }, 150);
+                // Speak with retry on failure
+                try {
+                    this.synthesis.speak(this.currentUtterance);
+                } catch (error) {
+                    console.error('❌ Speak failed:', error);
+                    if (onEnd) onEnd();
+                    reject(error);
+                }
+            }, 200); // Slightly longer delay for stability
         });
     }
 
