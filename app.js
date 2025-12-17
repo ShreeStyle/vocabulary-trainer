@@ -412,6 +412,9 @@ function quitGame() {
         gameScreen.classList.remove('active');
         welcomeScreen.classList.add('active');
         
+        // Store wrong answers in results screen
+        resultsScreen.wrongAnswers = wrongAnswers;
+        
         // Show wrong answers summary after screen switch
         if (wrongAnswers.length > 0) {
             showWrongAnswersSummary(wrongAnswers);

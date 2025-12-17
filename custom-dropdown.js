@@ -10,6 +10,13 @@ function initCustomDropdowns() {
         const enabledOptions = selectItems.querySelectorAll('div:not(.disabled)');
         const hiddenSelect = select.parentElement.querySelector('select');
         
+        // Set initial value of hidden select to match the first option
+        const firstOption = allOptions[0];
+        if (firstOption && hiddenSelect) {
+            hiddenSelect.value = firstOption.getAttribute('data-value');
+            firstOption.classList.add('same-as-selected');
+        }
+        
         // Toggle dropdown
         selectSelected.addEventListener('click', function(e) {
             e.stopPropagation();
